@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "../src/sass/style";
 import ProductListing from "./Components/ProductListing";
 import Loader from "./Loader/Loading"
+import ProductDetails from "./Components/ProductDetails";
+import Navbar from "./Components/Navbar";
 
 // We can use context of the components.
 function App() {
@@ -20,8 +22,8 @@ function App() {
     <Router>
 
       <div className="App">
-        <h2>Redux</h2>
-        {/* <NavigationBar /> */}
+        
+        <Navbar />
         {/* {dataloading ? <Loader /> : ""} */}
         
         <Routes>
@@ -31,7 +33,7 @@ function App() {
         element={<ProductListing/>}
         />
         
-        {/* <Route path="/form" element={dataloading ? "" : <ProductForm />} /> */}
+        <Route path="/cart" element={<ProductDetails />} />
         {/* <Route path="/about" element={<About />} /> */}
       </Routes>
       </div>

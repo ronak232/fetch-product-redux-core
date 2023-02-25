@@ -15,6 +15,14 @@ export const DeleteProduct = (id) => {
   };
 };
 
+
+export const AddProduct = (id) => {
+  return {
+    type: ActionTypes.DELETE_PRODUCT,
+    payload: id,
+  };
+};
+
 export const SelectedProduct = (id) => {
   return {
     type: ActionTypes.SELECTED_PRODUCT,

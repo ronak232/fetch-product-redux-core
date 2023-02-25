@@ -5,14 +5,16 @@ import {
   DeleteProduct,
   GetProducts,
   SelectedProduct,
+  AddProduct,
 } from "../redux/action/Actions";
 
 function ProductListing() {
-  const { productData } = useSelector((state) => state.allproduct);
-
+  const { productData, loading } = useSelector((state) => state.allproduct);
+  console.log(productData);
   const dispatch = useDispatch();
-  const fetchedData = async () => {
-    await axios
+
+  useEffect(() => {
+    axios
       .get("https://fakestoreapi.com/products")
       .then((response) => {
         dispatch(GetProducts(response.data));
@@ -20,13 +22,15 @@ function ProductListing() {
       .catch((err) => {
         console.log("Error", err);
       });
-  };
-  useEffect(() => {
-    fetchedData();
-  }, []);
+  }, [dispatch]);
+
+  if (loading) {
+    return <h3>Loading...</h3>;
+  }
 
   return (
     <div className="container">
+      <h2>Redux</h2>
       <div className="row">
         {productData?.map((item) => {
           return (
@@ -47,6 +51,9 @@ function ProductListing() {
               <h5 className="card-title">{item.title}</h5>
               <button onClick={() => dispatch(DeleteProduct(item.id))}>
                 Delete
+              </button>
+              <button onClick={() => dispatch(AddProduct(item.id))}>
+                Add to Cart
               </button>
             </div>
           );
