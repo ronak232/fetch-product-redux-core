@@ -1,27 +1,19 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import {
-  DeleteProduct,
+  // DeleteProduct,
   GetProducts,
   SelectedProduct,
-  AddProduct,
 } from "../redux/action/Actions";
+import { AddProduct } from "../redux/action/cartAction";
 
 function ProductListing() {
   const { productData, loading } = useSelector((state) => state.allproduct);
-  console.log(productData);
+  // console.log(productData);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    axios
-      .get("https://fakestoreapi.com/products")
-      .then((response) => {
-        dispatch(GetProducts(response.data));
-      })
-      .catch((err) => {
-        console.log("Error", err);
-      });
+    dispatch(GetProducts())
   }, [dispatch]);
 
   if (loading) {
@@ -38,7 +30,7 @@ function ProductListing() {
               className="card col-md-3 px-2"
               key={item.id}
               onClick={() =>
-                dispatch(SelectedProduct(console.log("clicked", item.id)))
+                dispatch(SelectedProduct(console.log("clicked"), item.id))
               }
             >
               <div className="w-100">
@@ -49,10 +41,8 @@ function ProductListing() {
                 />
               </div>
               <h5 className="card-title">{item.title}</h5>
-              <button onClick={() => dispatch(DeleteProduct(item.id))}>
-                Delete
-              </button>
-              <button onClick={() => dispatch(AddProduct(item.id))}>
+              
+              <button onClick={() => dispatch(AddProduct(item))}>
                 Add to Cart
               </button>
             </div>

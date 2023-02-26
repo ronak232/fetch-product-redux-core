@@ -20,7 +20,7 @@ function Navbar() {
       </button>
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav">
-          <Link to="/home" className="nav-item nav-link active" href="#">
+          <Link to="/" className="nav-item nav-link active" href="#">
             Home <span className="sr-only">(current)</span>
           </Link>
           <Link to="/cart" className="nav-item nav-link" href="#">
