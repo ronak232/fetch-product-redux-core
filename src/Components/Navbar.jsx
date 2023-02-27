@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <div className="container">
       <a className="navbar-brand" href="/">
         Navbar
       </a>
@@ -27,6 +28,7 @@ function Navbar() {
             Cart
           </Link>
         </div>
+      </div>
       </div>
     </nav>
   );
