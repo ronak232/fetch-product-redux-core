@@ -2,24 +2,32 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DeleteProduct } from "../redux/action/cartAction";
 function ProductDetails() {
+  const { cartItems } = useSelector((state) => state.cartproduct);
+  // console.log(cartItems);
   const dispatch = useDispatch();
 
-  const { cartItems } = useSelector((state) => state.cartproduct);
-  console.log(cartItems);
-  localStorage.setItem("cartProduct", JSON.stringify(cartItems));
   return (
-    <div>
+    <div className="container">
       {cartItems.length === 0 ? (
-        <div>No item in the cart</div>
+        <h1>No Items</h1>
       ) : (
-        // cartItems?.map((item) => {
-        // console.log(item);
-        // return (
-        <div>
-          {/* <h1>{title}</h1> */}
-          {/* <button onClick={() => dispatch(DeleteProduct(console.log("sdads"), item.id))}> */}
-          Delete
-          {/* </button> */}
+        <div className="row">
+          {cartItems.map((item) => {
+            return (
+              <div className="card col-md-3 mx-3" key={item.id}>
+                <img className="card-img-top" src={item.image} alt="" />
+                <div className="card-body">
+                  <h5 className="card-title">{item.title}</h5>
+                  <p className="card-text">{item.description}</p>
+                </div>
+                <div>
+                  <button onClick={() => dispatch(DeleteProduct(item.id))}>
+                    Delete
+                  </button>
+                </div>
+              </div>
+            );
+          })}
         </div>
       )}
     </div>

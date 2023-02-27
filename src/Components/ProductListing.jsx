@@ -30,7 +30,7 @@ function ProductListing() {
               className="card col-md-3 px-2"
               key={item.id}
               onClick={() =>
-                dispatch(SelectedProduct(console.log("clicked"), item.id))
+                dispatch(SelectedProduct(console.log("clicked"), item ))
               }
             >
               <div className="w-100">

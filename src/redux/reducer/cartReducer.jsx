@@ -1,7 +1,7 @@
 import { ActionTypes } from "../action-type/ActionType";
 
 const initialCart = {
-  cartItems:  [],
+  cartItems: JSON.parse(localStorage.getItem("cartProduct")) || [],
   // loading: true,
 };
 
@@ -12,11 +12,11 @@ export const cartReducer = (state = initialCart, { type, payload }) => {
         ...state,
         cartItems: [...state.cartItems, payload],
       };
-    // case ActionTypes.DELETE_PRODUCT:
-    //   return {
-    //     ...state,
-    //     cartItems: payload,
-    //   };
+    case ActionTypes.DELETE_PRODUCT:
+      return {
+        ...state,
+        cartItems: payload,
+      };
     default:
       return state;
   }
