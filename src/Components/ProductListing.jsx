@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Loader from "../Loader/Loading";
 import {
   // DeleteProduct,
   GetProducts,
@@ -17,7 +18,7 @@ function ProductListing() {
   }, [dispatch]);
 
   if (loading) {
-    return <h3>Loading...</h3>;
+    return <div><Loader/></div>;
   }
 
   return (
